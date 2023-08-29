@@ -16,12 +16,21 @@ const displayPhone = (phones, isShowAll) => {
         document.getElementById('btn-show-all').classList.add('hidden');
     }
 
+    if(phones.length <= 0){
+        productContainer.innerHTML = `<h1 class="text-center">No Data found, please try different keyword</h1>`
+        productContainer.classList.remove('grid');
+        toggleLoadingSpinner(false);
+        return;
+    }else{
+        productContainer.classList.add('grid');
+    }
+
     if (!isShowAll) {
         phones = phones.slice(0, 10);
     }
-
+    console.log(phones);
     phones.forEach(phone => {
-        // console.log(phone);
+        
         const div = document.createElement('div');
         div.innerHTML = `
         
@@ -87,15 +96,11 @@ const showDetails = phoneData => {
     <p class="text-xl py-2"><b>Memory :</b>  ${phoneData?.mainFeatures?.memory} </p>
     <p class="text-xl py-2"><b>Storage :</b>  ${phoneData?.mainFeatures?.storage} </p>
     <p class="text-xl py-2"><b>ChipSet :</b>  ${phoneData?.mainFeatures?.chipSet} </p>
-    <p class="text-xl py-2"><b>Release Date :</b>  ${phoneData?.releaseDate} </p>
+    <p class="text-xl py-2"><b>Release Date :</b>  ${phoneData?.releaseDate || 'No Release Date Available'} </p>
 
     `;
 
 }
-
-
-
-
 
 loadPhone();
 
