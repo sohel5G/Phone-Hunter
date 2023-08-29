@@ -19,7 +19,8 @@
             <div>
                 <div class="form-control">
                     <div class="input-group justify-center">
-                        <input type="text" placeholder="Search…" class="input input-bordered" id="search-input" />
+                        <input type="text" placeholder="Search products…" class="input input-bordered"
+                            id="search-input" />
                         <button class="btn btn-primary" id="btn-search" onclick="handleSearch()">Search</button>
                     </div>
                 </div>
@@ -46,6 +47,16 @@
             </div>
         </section>
     </main>
+    <section class="container mx-auto">
+        <dialog id="show_phone_details" class="modal">
+            <form method="dialog" class="modal-box">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-red-600">✕</button>
+                <div id="show-details-container">
+
+                </div>
+            </form>
+        </dialog>
+    </section>
     <footer class="my-12">
         <p class="text-center"><small>Copyright 28 August 2023</small></p>
     </footer>

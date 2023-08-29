@@ -33,7 +33,7 @@ const displayPhone = (phones, isShowAll) => {
             <p><b>Phone brand</b> : ${phone.brand}</p>
             <p><b>Phone Id</b> : ${phone.slug}</p>
             <div class="card-actions">
-                <button class="btn btn-primary">Buy Now</button>
+                <button onclick="handleShowDetails('${phone.slug}'); show_phone_details.showModal()" class="btn btn-primary">Show Details</button>
             </div>
         </div>        
 
@@ -67,5 +67,37 @@ const handleShowAll = () => {
     handleSearch(true);
 }
 
+
+const handleShowDetails = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    const phoneData = data.data;
+
+    showDetails(phoneData);
+}
+const showDetails = phoneData => {
+    console.log(phoneData);
+
+    const showDetailsContainer = document.getElementById('show-details-container');
+    showDetailsContainer.innerHTML = `
+    
+    <img class="w-[250px] mx-auto" src="${phoneData.image}" alt="">
+    <h3 id="show-details-title" class="font-bold text-3xl mt-4 mb-4">${phoneData?.name}</h3>
+    <p class="text-xl py-2"><b>Display Size :</b>  ${phoneData?.mainFeatures?.displaySize} </p>
+    <p class="text-xl py-2"><b>Memory :</b>  ${phoneData?.mainFeatures?.memory} </p>
+    <p class="text-xl py-2"><b>Storage :</b>  ${phoneData?.mainFeatures?.storage} </p>
+    <p class="text-xl py-2"><b>ChipSet :</b>  ${phoneData?.mainFeatures?.chipSet} </p>
+    <p class="text-xl py-2"><b>Release Date :</b>  ${phoneData?.releaseDate} </p>
+
+    `;
+
+}
+
+
+
+
+
 loadPhone();
+
+
 
