@@ -16,21 +16,21 @@ const displayPhone = (phones, isShowAll) => {
         document.getElementById('btn-show-all').classList.add('hidden');
     }
 
-    if(phones.length <= 0){
+    if (phones.length <= 0) {
         productContainer.innerHTML = `<h1 class="text-center">No Data found, please try different keyword</h1>`
         productContainer.classList.remove('grid');
         toggleLoadingSpinner(false);
         return;
-    }else{
+    } else {
         productContainer.classList.add('grid');
     }
 
     if (!isShowAll) {
         phones = phones.slice(0, 10);
     }
-    console.log(phones);
+
     phones.forEach(phone => {
-        
+
         const div = document.createElement('div');
         div.innerHTML = `
         
@@ -103,6 +103,5 @@ const showDetails = phoneData => {
 }
 
 loadPhone();
-
 
 
